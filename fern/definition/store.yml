@@ -1,0 +1,110 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
+
+service:
+  base-path: /store
+  auth: false
+
+  endpoints:
+    getInventory:
+      auth: true
+      display-name: Get inventory of Pets
+      docs: Returns a map of status codes to quantities
+      method: GET
+      path: /inventory
+      response: map<string, integer>
+      examples:
+        - response:
+            body: { 'pending': 4 }
+
+    placeOrder:
+      display-name: Place order
+      docs: Place a new order in the store for a Pet
+      method: POST
+      path: /order
+      request: OrderRequest
+      response: Order
+      errors:
+        - InvalidOrderInputError
+      examples:
+        - request: $OrderRequest.ExampleOrderRequest
+          response: 
+            body: $Order.ExampleOrderResponse
+
+    findOrderByID:
+      display-name: Find purchase order by ID
+      docs: >-
+        For valid response try integer IDs with value <= 5 or > 10. Other values
+        will generate exceptions.
+      method: GET
+      path: /order/{id}
+      path-parameters:
+        id:
+          type: integer
+          docs: ID of order that needs to be fetched
+      response: Order
+      errors:
+        - OrderNotFoundError
+        - InvalidOrderIDError
+      examples:
+        - path-parameters: 
+            id: 100004
+          response: 
+            body: $Order.ExampleOrderResponse
+
+    deleteOrder:
+      display-name: Delete purchase order by ID
+      docs: >-
+        For valid response try integer IDs with value < 1000. Anything above
+        1000 or nonintegers will generate API errors
+      method: DELETE
+      path: /order/{orderID}
+      path-parameters:
+        orderID:
+          type: integer
+          docs: ID of the order that needs to be deleted
+      errors:
+        - OrderNotFoundError
+        - InvalidOrderIDError
+
+types:
+  OrderStatus:
+    enum:
+      - placed
+      - approved
+      - delivered
+
+  Order:
+    properties:
+      id: optional<integer>
+      petId: optional<integer>
+      quantity: optional<integer>
+      shipDate: optional<datetime>
+      status: optional<OrderStatus>
+      complete: optional<boolean>
+    examples:
+      - name: ExampleOrderResponse
+        value:
+          id: 100004
+          petId: 44
+          quantity: 1
+          status: placed 
+          complete: true
+
+  OrderRequest:
+    properties:
+      petId: optional<integer>
+      quantity: optional<integer>
+    examples:
+      - name: ExampleOrderRequest
+        value:
+          petId: 44
+          quantity: 1
+
+errors:
+  InvalidOrderIDError:
+    status-code: 400
+  OrderNotFoundError:
+    status-code: 404
+    type: Order
+  InvalidOrderInputError:
+    status-code: 400

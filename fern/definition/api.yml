@@ -1,0 +1,10 @@
+name: petstore-ferndef-api
+docs: |-
+    This API definition is written using the Fern Definition format. It's based on the Petstore 3.0 OpenAPI definition example provided by
+    Swagger [http://swagger.io](http://swagger.io). 
+error-discrimination:
+  strategy: status-code
+auth: bearer
+environments:
+  Sandbox: https://petstore3.swagger.io/api/v3
+default-environment: Sandbox
