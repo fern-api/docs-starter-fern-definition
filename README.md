@@ -44,10 +44,7 @@ The `fern/` folder in your repository contains these files and folders:
   ├─ store.yml
   └─ user.yml
 ├─ docs/
-  ├─ assets/
-    ├─ favicon.png
-    ├─ logo_dark_mode.png
-    └─ logo_light_mode.png
+  └─ assets/
   └─ pages/
     ├─ sdks.mdx
     └─ welcome.mdx
