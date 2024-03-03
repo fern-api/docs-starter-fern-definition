@@ -21,6 +21,7 @@ Here's [an example.](https://docs.propexo.com/documentation)
 
 - Node 18 or higher
 - A [GitHub](https://github.com) account
+- Familiarity with using a CLI
 
 ---
 
@@ -87,7 +88,6 @@ Install the Fern CLI tool globally by running:
 npm install -g fern-api
 ```
 
-When prompted, log into and connect your GitHub account.
 
 > [!NOTE]  
 > The above CLI command is a global command that you can run from any location. The `fern` commands in the following steps must be run from within your repository.
@@ -96,9 +96,11 @@ When prompted, log into and connect your GitHub account.
 
 Run the following command:
 
-```bash
+```shell
 fern generate --docs
 ```
+
+When prompted, log into and connect your GitHub account.
 
 Once the documentation is generated, Fern displays the URL where you can view the published documentation. For example:
 
@@ -134,11 +136,11 @@ To learn about Fern's built-in component library you can use in Markdown:
 
 ### Step 7: Set up a custom domain
 
-If you wish to use a custom subdomain like `https://docs.YOUR_ORGANIZATION.com` or a subpath like `https://YOUR_ORGANIZATION.com/docs`, you can subscribe to the [Starter plan](https://buildwithfern.com/pricing). Once subscribed, update `docs.yml` with the custom domain configuration, replacing YOUR_ORGANIZATION with your own.
+If you wish to use a custom subdomain like `https://docs.YOUR_ORGANIZATION.COM` or a subpath like `https://YOUR_ORGANIZATION.COM/docs`, you can subscribe to the [Starter plan](https://buildwithfern.com/pricing). Once subscribed, update `docs.yml` with the custom domain configuration, replacing YOUR_ORGANIZATION with your own:
 
 ```yaml
 - url: YOUR_ORGANIZATION.docs.buildwithfern.com
-  custom-domain: docs.YOUR_ORGANIZATION.com
+  custom-domain: docs.YOUR_ORGANIZATION.COM
 ```
 
 Good luck creating beautiful and functional documentation! 🌿
