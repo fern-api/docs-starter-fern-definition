@@ -1,0 +1,275 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
+
+service:
+  base-path: /pet
+  auth: true
+
+  endpoints:
+    add:
+      display-name: Add pet
+      docs: Add a new Pet to the store
+      method: POST
+      path: ""
+      request: AddPetRequest
+      response: Pet
+      errors:
+        - InvalidPetInputError
+      examples:
+        - request: $AddPetRequest.ExamplePetRequest
+          response: 
+            body: $Pet.ExamplePetResponse
+
+    update:
+      display-name: Update pet
+      docs: Update an existing Pet by ID
+      method: PUT
+      path: ""
+      request: UpdatePetRequest
+      response: Pet
+      errors:
+        - InvalidPetIDError
+        - PetNotFoundError
+      examples:
+        - request: $UpdatePetRequest.ExamplePetRequest
+          response: 
+            body: $Pet.ExamplePetResponse
+
+    findPetsByStatus:
+      display-name: Find pets by status
+      docs: Multiple status values can be provided with comma separated strings
+      method: GET
+      path: /findByStatus
+      request:
+        name: findPetsByStatusRequest
+        query-parameters:
+          status:
+            type: optional<PetStatus>
+            docs: Status values that need to be considered for filter
+      response: list<Pet>
+      errors:
+        - InvalidPetStatusError
+      examples:
+        - response: 
+            body: 
+              - $Pet.ExamplePetResponse
+
+    findPetsByTags:
+      display-name: Find pets by tags
+      docs: Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+      method: GET
+      path: /findByTags
+      request: 
+        name: findPetsByTagsRequest
+        query-parameters:
+          tags:
+            type: optional<string>
+            docs: Tags to filter by
+      response: list<Pet>
+      errors:
+        - InvalidTagError
+      examples:
+        - response: 
+            body: 
+              - $Pet.ExamplePetResponse
+
+    findPetByID:
+      display-name: Find Pet by ID
+      docs: Find a single Pet by ID
+      method: GET
+      path: /{petID}
+      path-parameters:
+        petID:
+          type: integer
+          docs: ID of Pet to return
+      response: Pet
+      errors:
+        - InvalidPetIDError
+        - PetNotFoundError
+      examples:
+        - path-parameters:
+            petID: 44
+          response: 
+            body: $Pet.ExamplePetResponse
+
+    updatePetWithForm:
+      display-name: Updates a Pet in the store with form data
+      method: POST
+      path: /{petID}
+      path-parameters:
+        petID:
+          type: integer
+          docs: ID of Pet that needs to be updated
+      request:
+        name: updatePetWithFormRequest
+        query-parameters:
+          name:
+            type: optional<string>
+            docs: Name of Pet that needs to be updated
+          status:
+            type: optional<string>
+            docs: Status of Pet that needs to be updated
+      errors:
+        - InvalidPetIDError
+
+    delete:
+      display-name: Delete pet
+      method: DELETE
+      path: /{petID}
+      path-parameters:
+        petID:
+          type: integer
+          docs: Pet ID to delete
+      errors:
+        - InvalidPetIDError
+
+    uploadImageFile:
+      display-name: Upload an image
+      method: POST
+      path: /{petID}/uploadImageFile
+      path-parameters:
+        petID:
+          type: integer
+          docs: ID of Pet to update
+      request:
+        name: uploadImageFileRequest
+        query-parameters:
+          additionalMetadata:
+            type: optional<string>
+            docs: Additional Metadata
+        body:
+          properties:
+            file: file
+      response: uploadImageFileResponse
+      # TODO
+      # commented out below as keeps causing "Example is not an object"
+      # error on generate -- looks like a bug where if there's a request
+      # field for the endpoint, and you don't include a request example,
+      # it causes an error -- but there should be no request example
+      # for this endpoint as it's a file. 
+      # examples:
+      #   - response: 
+      #       body: $ApiResponse.ExampleApiResponse
+
+types:
+  AddPetRequest:
+    properties:
+      name: string
+      photoUrls: 
+        type: optional<list<string>>
+        docs: A list of publicly available URLs featuring the Pet
+      category: optional<Category>
+      tags: optional<list<Tag>>
+      status: optional<PetStatus>
+    examples:
+      - name: ExamplePetRequest
+        value:
+          name: Markley
+          photoUrls:
+            - https://fern-image-hosting.s3.amazonaws.com/petstore/markley-adventure.jpeg
+            - https://fern-image-hosting.s3.amazonaws.com/petstore/markley-ball.jpeg
+            - https://fern-image-hosting.s3.amazonaws.com/petstore/markley-hiking.jpeg
+            - https://fern-image-hosting.s3.amazonaws.com/petstore/markley-tent.jpeg       
+
+  UpdatePetRequest:
+    properties:
+      id: integer
+      name: optional<string>
+      photoUrls: 
+        type: optional<list<string>>
+        docs: A list of publicly available URLs featuring the Pet
+      category: optional<Category>
+      tags: optional<list<Tag>>
+      status: optional<PetStatus>
+    examples:
+      - name: ExamplePetRequest
+        value:
+          id: 44
+          status: sold
+
+  Pet:
+    properties:
+      id: 
+        type: integer
+        docs: A unique ID for the Pet
+      name: 
+        type: string
+        docs: The first name of the Pet
+      photoUrls: 
+        type: list<string>
+        docs: A list of publicly available URLs featuring the Pet
+      category: optional<Category>
+      tags: optional<list<Tag>>
+      status:
+        type: optional<PetStatus>
+        docs: Pet status in the store
+    examples:
+      - name: ExamplePetResponse
+        value:
+          id: 44
+          name: Markley
+          category: $Category.ExampleCategory
+          photoUrls:
+            - https://fern-image-hosting.s3.amazonaws.com/petstore/markley-adventure.jpeg
+            - https://fern-image-hosting.s3.amazonaws.com/petstore/markley-ball.jpeg
+            - https://fern-image-hosting.s3.amazonaws.com/petstore/markley-hiking.jpeg
+            - https://fern-image-hosting.s3.amazonaws.com/petstore/markley-tent.jpeg   
+          tags:
+            - $Tag.ExampleTag1
+          status: pending
+
+  Category:
+    properties:
+      id: optional<integer>
+      name: optional<string>
+    examples:
+      - name: ExampleCategory
+        value:
+          id: 1
+          name: Dogs
+
+  PetStatus:
+    enum:
+      - available
+      - pending
+      - sold
+
+  Tag:
+    properties:
+      id: optional<integer>
+      name: optional<string>
+    examples:
+      - name: ExampleTag1
+        value:
+          id: 010
+          name: PoodleMix
+      - name: ExampleTag2
+        value:
+          id: 020
+          name: PureBred
+
+  uploadImageFileResponse:
+    properties:
+      code: optional<integer>
+      type: optional<string>
+      message: optional<string>
+    examples:
+      - name: ExampleUploadImageFileResponse
+        value:
+          code: 1
+          type: Success
+          message: The image has been created for the Pet
+
+errors:
+  InvalidPetIDError:
+    status-code: 400
+  InvalidPetInputError:
+    status-code: 400
+  PetNotFoundError:
+    status-code: 404
+    type: Pet
+  InvalidPetStatusError:
+    status-code: 400
+    type: PetStatus
+  InvalidTagError:
+    status-code: 400
+    type: Tag

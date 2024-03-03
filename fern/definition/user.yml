@@ -1,0 +1,173 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
+
+service:
+  base-path: /user
+  auth: false
+
+  endpoints:
+    create:
+      display-name: Create user
+      docs: This can only be peformed by the logged in user.
+      method: POST
+      path: ""
+      request: CreateUserRequest
+      response: User
+      examples:
+        - request: $CreateUserRequest.ExampleCreateUserRequest
+          response: 
+            body: $User.ExampleUserResponse
+
+    createUsersWithListInput:
+      display-name: Creates list of users with given input array
+      docs: Creates list of users with given input array
+      method: POST
+      path: /createWithList
+      request: CreateUsersWithListInputRequest
+      response: User
+      examples:
+        - request: 
+            - username: doglover123
+              firstName: Katie
+              lastName: Neumann
+              email: doglover123@email.com
+              phone: "5557891234"
+              userStatus: 1
+          response: 
+            body: $User.ExampleUserResponse
+
+    login:
+      display-name: Logs user into the system
+      method: GET
+      path: /login
+      request: 
+        name: loginUserRequest
+        query-parameters:
+          username: 
+            type: optional<string>
+            docs: The user name for login
+          password: 
+            type: optional<string>
+            docs: The password for login in clear text
+      response: string
+      errors:
+        - InvalidUsernameOrPasswordError
+
+    logout:
+      display-name: Logs out current logged in user session
+      method: GET
+      path: /logout
+
+    get:
+      display-name: Get user by user name
+      method: GET
+      path: /{username}
+      path-parameters:
+        username:
+          type: string
+          docs: The name that needs to be fetched. Use user1 for testing.
+      response: User
+      errors:
+        - InvalidUsernameError
+        - UserNotFoundError
+      examples:
+        - path-parameters:
+            username: doglover123
+          response: 
+            body: $User.ExampleUserResponse
+
+    update:
+      display-name: Update user
+      docs: This can only be done by the logged in user
+      method: PUT
+      path: /{username}
+      path-parameters:
+        username:
+          type: string
+          docs: name that needs to be updated
+      request: UpdateUserRequest
+      examples:
+        - path-parameters:
+            username: doglover123
+          request: $UpdateUserRequest.ExampleUserUpdate
+        
+    delete:
+      display-name: Delete user
+      docs: This can only be done by the logged in user
+      method: DELETE
+      path: /{username}
+      path-parameters:
+        username: 
+          type: string
+          docs: The name that needs to be deleted
+      errors:
+        - InvalidUsernameError
+        - UserNotFoundError
+        
+types:
+  User:
+    properties:
+      id: optional<integer>
+      username: optional<string>
+      firstName: optional<string>
+      lastName: optional<string>
+      email: optional<string>
+      password: optional<string>
+      phone: optional<string>
+      userStatus:
+        type: optional<integer>
+        docs: User Status
+    examples:
+      - name: ExampleUserResponse
+        value:
+          id: 155
+          username: doglover123
+          firstName: Katie
+          lastName: Neumann
+          email: doglover123@email.com
+          password: password
+          phone: "5557891234"
+          userStatus: 1
+
+  CreateUserRequest:
+    properties:
+      username: optional<string>
+      firstName: optional<string>
+      lastName: optional<string>
+      email: optional<string>
+      password: optional<string>
+      phone: optional<string>
+    examples:
+      - name: ExampleCreateUserRequest
+        value:
+          username: doglover123
+          firstName: Katie
+          lastName: Neumann
+          email: doglover123@email.com
+          phone: "5557891234"
+
+  UpdateUserRequest:
+    properties:
+      id: integer
+      username: optional<string>
+      firstName: optional<string>
+      lastName: optional<string>
+      email: optional<string>
+      password: optional<string>
+      phone: optional<string>
+    examples:
+      - name: ExampleUserUpdate
+        value:
+          id: 155
+          email: petperson@email.com
+
+  CreateUsersWithListInputRequest: 
+    type: list<User>
+
+errors:
+  UserNotFoundError:
+    status-code: 404
+    type: User
+  InvalidUsernameOrPasswordError:
+    status-code: 400
+  InvalidUsernameError:
+    status-code: 400
