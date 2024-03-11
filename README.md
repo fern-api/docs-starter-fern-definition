@@ -28,7 +28,7 @@ Here's [an example.](https://docs.propexo.com/documentation)
 
 ### Step 1: Use this template
 
-1. Click on the **Use this template** button. You must be logged into GitHub.
+1. Click on the **Use this template** button (found at the top right of this page). You must be logged into GitHub.
 2. Choose the option to **create a new repository**. Name it `fern-docs`.
 
 ### Step 2: Clone and open the repository in your preferred code editor
