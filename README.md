@@ -12,7 +12,7 @@ Create beautiful documentation in under 5 minutes, using the Fern Definition for
 
 </div>
 
-Here's [an example.](https://docs.propexo.com/documentation)
+Here's [are examples.](#customer-showcase)
 
 > [!TIP]
 > Prefer to use OpenAPI? We've got you covered: [Fern Docs Quickstart with OpenAPI Specification](https://github.com/fern-api/docs-starter-openapi).
@@ -121,19 +121,19 @@ To preview updates to your documentation before publishing changes, run `fern ge
 
 To modify the API Reference:
 
-- Update or replace the Fern Definition files in the `definition/` folder. See our documentation on [how to define your API with Fern Definition](https://buildwithfern.com/docs/define-your-api/ferndef/overview).
+- Update or replace the Fern Definition files in the `definition/` folder. See our documentation on [how to define your API with Fern Definition](https://buildwithfern.com/learn/overview/define-your-api/ferndef/overview).
 
 To modify the other docs pages or add new pages:
 
-- Update the files located in the `docs/pages/` folder, such as `welcome.mdx`. See our documentation on [how to write content with Markdown and MDX](https://buildwithfern.com/docs/fern-docs/content/write-markdown).
+- Update the files located in the `docs/pages/` folder, such as `welcome.mdx`. See our documentation on [how to write Markdown content](https://buildwithfern.com/learn/docs/content/write-markdown).
 
 To configure site navigation, styles, and see other configuration options:
 
-- See [Fern Docs Configuration Overview](https://buildwithfern.com/docs/fern-docs/config/overview).
+- See [Fern Docs Configuration Overview](https://buildwithfern.com/learn/docs/config/overview).
 
 To learn about Fern's built-in component library you can use in Markdown:
 
-- See the [Component Library](https://buildwithfern.com/docs/fern-docs/content/component-library/).
+- See the [Component Library](https://buildwithfern.com/learn/docs/components).
 
 ### Step 7: Set up a custom domain
 
@@ -150,12 +150,14 @@ Good luck creating beautiful and functional documentation! 🌿
 
 ## Support
 
-Need help? Email us at (support@buildwithfern.com)[mailto:support@buildwithfern.com] or join our [Discord community](https://discord.com/invite/JkkXumPzcG).
+Need help? [Set up a call](https://buildwithfern.com/contact) with an expert or email us at [support@buildwithfern.com](mailto:support@buildwithfern.com). 
 
 ## Customer showcase
 
 Your docs can look this good:
 
-- [Flatfile's API Reference](https://reference.flatfile.com/api-reference/events/create-an-event)
-- [Sugeragent's Docs](https://docs.superagent.sh/)
-- [Credal's Docs](https://docs.credal.ai/)
+- [Hume](https://dev.hume.ai)
+- [MultiOn](https://docs.multion.ai)
+- [Flagright](https://docs.flagright.com)
+- [Traceloop](https://fern.traceloop.com/docs)
+- [ElevenLabs](https://elevenlabs.docs.buildwithfern.com/docs/developers)
