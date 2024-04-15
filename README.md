@@ -12,17 +12,19 @@ Create beautiful documentation in under 5 minutes, using the Fern Definition for
 
 </div>
 
-Here's [are examples.](#customer-showcase)
+## Customer Showcase
 
-> [!TIP]
-> Prefer to use OpenAPI? We've got you covered: [Fern Docs Quickstart with OpenAPI Specification](https://github.com/fern-api/docs-starter-openapi).
+Before you begin the quickstart, check out API documentation built with Fern: [Hume](https://dev.hume.ai) | [MultiOn](https://docs.multion.ai) | [Flagright](https://docs.flagright.com) | [Traceloop](https://fern.traceloop.com/docs) | [ElevenLabs](https://elevenlabs.docs.buildwithfern.com/docs/developers)
+
+---
 
 ## Requirements
 
 - Node 18 or higher
 - A [GitHub](https://github.com) account
 
----
+> [!TIP]
+> Prefer to use OpenAPI? We've got you covered: [Fern Docs Quickstart with OpenAPI Specification](https://github.com/fern-api/docs-starter-openapi).
 
 ## Instructions
 
@@ -151,13 +153,3 @@ Good luck creating beautiful and functional documentation! 🌿
 ## Support
 
 Need help? [Set up a call](https://buildwithfern.com/contact) with an expert or email us at [support@buildwithfern.com](mailto:support@buildwithfern.com). 
-
-## Customer showcase
-
-Your docs can look this good:
-
-- [Hume](https://dev.hume.ai)
-- [MultiOn](https://docs.multion.ai)
-- [Flagright](https://docs.flagright.com)
-- [Traceloop](https://fern.traceloop.com/docs)
-- [ElevenLabs](https://elevenlabs.docs.buildwithfern.com/docs/developers)
