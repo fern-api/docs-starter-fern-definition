@@ -26,8 +26,6 @@ Before you begin the quickstart, check out API documentation built with Fern: [H
 > [!TIP]
 > Prefer to use OpenAPI? We've got you covered: [Fern Docs Quickstart with OpenAPI Specification](https://github.com/fern-api/docs-starter-openapi).
 
-## Instructions
-
 ### Step 1: Use this template
 
 1. Click on the **Use this template** button. You must be logged into GitHub.
