@@ -14,7 +14,7 @@ Create beautiful documentation in under 5 minutes, using the Fern Definition for
 
 ## Customer Showcase
 
-Before you begin the quickstart, check out API documentation built with Fern: [Hume](https://dev.hume.ai) | [MultiOn](https://docs.multion.ai) | [Flagright](https://docs.flagright.com) | [Traceloop](https://fern.traceloop.com/docs) | [ElevenLabs](https://elevenlabs.docs.buildwithfern.com/docs/developers)
+Gett inspired by API documentation built with Fern: [Hume](https://dev.hume.ai) | [MultiOn](https://docs.multion.ai) | [Flagright](https://docs.flagright.com) | [Traceloop](https://fern.traceloop.com/docs) | [ElevenLabs](https://elevenlabs.docs.buildwithfern.com/docs/developers)
 
 ---
 
