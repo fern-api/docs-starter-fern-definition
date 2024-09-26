@@ -44,16 +44,13 @@ The `fern/` folder in your repository contains these files and folders:
   ├─ store.yml
   └─ user.yml
 ├─ docs/
-  ├─ assets/
-    ├─ favicon.png
-    ├─ logo_dark_mode.png
-    └─ logo_light_mode.png
+  └─ assets/
   └─ pages/
+    ├─ concepts.mdx
     ├─ sdks.mdx
     └─ welcome.mdx
-    ├─ docs.yml
-├─ fern.config.json
-└─ generators.yml
+├─ docs.yml
+└─ fern.config.json
 ```
 
 The `definition/` folder contains Fern Definition files for a sample API called Swagger Petstore. Fern uses these files to generate the API Reference section of your docs site.
